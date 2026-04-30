@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMM Panel - High Quality</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --main-width: 1018px; /* العرض الذي حددته */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            font-family: sans-serif;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: var(--main-width);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* حاوية الصورة الأولى */
+        .box-1 {
+            width: 100%;
+            height: 680px; /* الطول المحدد */
+            z-index: 10; /* لتبقى دائماً فوق الصورة الثانية */
+            position: relative;
+        }
+
+        .box-1 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* حاوية الصورة الثانية (التي ستقوم بالأنميشن) */
+        .box-2 {
+            width: 100%;
+            height: 914px; /* الطول المحدد */
+            margin-top: -40px; /* تداخل بسيط لجعل الحركة تبدو كأنها تخرج من خلفها */
+            z-index: 5;
+            
+            /* تفعيل الأنميشن */
+            opacity: 0;
+            animation: modernSlideIn 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            animation-delay: 0.3s; /* تأخير بسيط لتبدأ الحركة بعد ظهور الصفحة */
+        }
+
+        .box-2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0 0 20px 20px;
+        }
+
+        /* أنميشن حديث بأسلوب الارتداد المرن (Spring Animation) */
+        @keyframes modernSlideIn {
+            0% {
+                transform: translateY(-300px) scale(0.95);
+                opacity: 0;
+            }
+            60% {
+                transform: translateY(20px) scale(1); /* تنزل زيادة شوي للأسفل */
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(0); /* تعود لمكانها الطبيعي */
+                opacity: 1;
+            }
+        }
+
+        /* لجعل الموقع متجاوب مع الجوال */
+        @media (max-width: 1018px) {
+            .box-1, .box-2 {
+                width: 100%;
+                height: auto;
+            }
+            .main-wrapper {
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        <div class="box-1">
+            <img src="imj1.PNG" alt="Header Image">
+        </div>
+
+        <div class="box-2">
+            <img src="imj2.PNG" alt="Features Image">
+        </div>
+    </div>
+
+</body>
+</html>
